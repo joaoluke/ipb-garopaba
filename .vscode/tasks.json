@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "idx-shell",
+			"command": "/nix/store/s11yv87skvi78m6m0i39i50wqpzyf8wn-android",
+			"name": "android",
+			"hook": "onStart",
+			"problemMatcher": [],
+			"label": "idx-onStart: android [onStart]"
+		}
+	]
+}

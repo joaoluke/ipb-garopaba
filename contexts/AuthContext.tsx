@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRouter  } from 'expo-router';
 
 interface AuthContextType {
     isAuthenticated: boolean;
@@ -16,11 +17,12 @@ export const AuthContext = createContext<AuthContextType>({
 export const AuthProvider = ({ children }: {
     children: React.ReactNode;
 }) => {
+    const router = useRouter();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
         const checkAuthStatus = async () => {
-            const token = await AsyncStorage.getItem('userToken');
+            const token = false
             if (token) {
                 setIsAuthenticated(true);
             }
@@ -29,8 +31,9 @@ export const AuthProvider = ({ children }: {
     }, []);
 
     const login = async (token: string) => {
-        setIsAuthenticated(true);
         await AsyncStorage.setItem('userToken', token);
+        setIsAuthenticated(true);
+        router.push('/(tabs)');
     };
 
     const logout = async () => {
